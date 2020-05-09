@@ -8,7 +8,6 @@ exports.up = function (knex) {
     tbl.string("image", 255);
     tbl.string("name", 25);
     tbl.integer("phone", 10);
-    tbl.increments("id");
     tbl.boolen("xbox");
     tbl.boolen("ps4");
     tbl.boolen("steam");
