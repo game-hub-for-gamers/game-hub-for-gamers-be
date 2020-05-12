@@ -1,10 +1,10 @@
-exports.up = function (knex) {
-  knex.schema.createTable("games", (tbl) => {
+exports.up = function (knex,Promise) {
+  return (knex.schema.createTable("games", (tbl) => {
     tbl.increments("id");
     tbl.string("games");
-  });
+  }));
 };
 
-exports.down = function (knex) {
-  return knex.schema.dropTable("games");
+exports.down = function (knex,Promise) {
+  return knex.dropTableIfExists("games");
 };

@@ -6,4 +6,4 @@ const env = process.env.NODE_ENV || "development";
 
 const configerOptions = knexFile[env];
 
-module.exports = knex(configerOptions);
+module.exports = knex(knexFile[env]);
