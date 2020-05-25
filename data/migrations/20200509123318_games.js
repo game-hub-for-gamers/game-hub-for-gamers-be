@@ -1,10 +1,10 @@
 exports.up = function (knex) {
-  knex.schema.createTable("games", (tbl) => {
+  return knex.schema.createTable("games", (tbl) => {
     tbl.increments("id");
-    tbl.string("games");
+    tbl.string("game");
   });
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("games");
+return knex.schema.dropTable("games");
 };

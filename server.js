@@ -9,10 +9,10 @@ server.use(helmet())
 server.use(express.json())
 
 const userRoute = require("./Routes/user")
-
+const gameRoute = require("./Routes/game")
 // links of componenets here
 server.use("/api/u",userRoute)
-
+server.use("/game/",gameRoute)
 server.get("/", (req, res) => {
     res.status(200).json({response: "server is responding"})
 })
