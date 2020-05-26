@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const UserDB = require("../models/userModels")
+const UserDB = require("../models/userModels");
 
 router.get("/u", async (req, res) => {
   try {
@@ -11,9 +11,11 @@ router.get("/u", async (req, res) => {
   }
 });
 
-router.post("/u", async (req, res) => {
+// register enddpoint
+router.post("/register", async (req, res) => {
+  // http://localhost:3333/api/user/register
   const newUser = req.body;
-  console.log(newUser)
+  console.log(newUser);
   if (!newUser) {
     res.status(404).json({ err: "Please provide the name" });
   } else {
@@ -26,4 +28,24 @@ router.post("/u", async (req, res) => {
   }
 });
 
-module.exports = router
+// login endpoint
+
+router.post("/login", async (req, res) => {
+  // async creates a promise (true/false)
+  const user = req.body;
+  const id = req.params;
+
+  if (!user && !id) {
+    res
+      .status(404)
+      .json({ errorMessage: "Please provide your correct credentials" });
+  } else {
+    try {
+      res.status(200).json({ message: "You have successfully logged in" });
+    } catch (erorr) {
+      res.status(500).json({ errorMessage: "Something went wrong" }, error);
+    }
+  }
+});
+
+module.exports = router;
