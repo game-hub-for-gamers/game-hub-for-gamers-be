@@ -5,10 +5,15 @@ const find = () => {
 };
 
 const add = (user) => {
-  return db("users").insert(user, "id");
+  return db("users").insert(user, "id", "username", "email", "password");
 };
+
+const findbyId = (id) => {
+  return db("users").where(id);
+};
+
 module.exports = {
   add,
   find,
-  // findbyID,
+  findbyId,
 };
