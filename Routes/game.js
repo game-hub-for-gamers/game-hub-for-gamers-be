@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const gameDB = require("../models/gamesModels")
+const gameDB = require("../models/gamesModels");
 
 router.get("/g", async (req, res) => {
   try {
@@ -13,7 +13,7 @@ router.get("/g", async (req, res) => {
 
 router.post("/g", async (req, res) => {
   const newGame = req.body;
-  console.log(newGame)
+  console.log(newGame);
   if (!newGame) {
     res.status(404).json({ err: "Please provide the name" });
   } else {
@@ -26,4 +26,4 @@ router.post("/g", async (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;

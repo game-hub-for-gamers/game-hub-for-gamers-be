@@ -1,20 +1,21 @@
-const express = require("express")
-const helmet = require("helmet") 
-const cors = require("cors")
+const express = require("express");
+const helmet = require("helmet");
+const cors = require("cors");
 
-const server = express()
+const server = express();
 
-server.use(cors())
-server.use(helmet())
-server.use(express.json())
+server.use(cors());
+server.use(helmet());
+server.use(express.json());
 
-const userRoute = require("./Routes/user")
-const gameRoute = require("./Routes/game")
+const userRoute = require("./Routes/user");
+const gameRoute = require("./Routes/game");
 // links of componenets here
-server.use("/api/u",userRoute)
-server.use("/game/",gameRoute)
-server.get("/", (req, res) => {
-    res.status(200).json({response: "server is responding"})
-})
+server.use("/api/user", userRoute);
+server.use("/game/", gameRoute);
 
-module.exports = server
+server.get("/", (req, res) => {
+  res.status(200).json({ response: "server is responding" });
+});
+
+module.exports = server;
