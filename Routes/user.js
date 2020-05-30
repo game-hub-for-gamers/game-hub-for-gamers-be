@@ -45,7 +45,6 @@ router.post("/login", (req, res) => {
     res.status(401).json({ error: "Wrong password or username" });
   } else {
     UserDB.findbyId({ username })
-      .first() // passing in the first value in our object
       .then((user) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getToken(user);
