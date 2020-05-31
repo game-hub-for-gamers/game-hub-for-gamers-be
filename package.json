@@ -6,13 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.js",
-    "start": "npm run server"
+    "start": "npm start index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/game-hub-for-gamers/game-hub-for-gamers-be.git"
   },
-  "keywords": [],
+  "keywords": ["heroku"],
   "author": "",
   "license": "ISC",
   "bugs": {
