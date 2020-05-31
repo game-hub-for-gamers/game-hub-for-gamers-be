@@ -9,7 +9,8 @@ const add = (user) => {
 };
 
 const findbyId = (id) => {
-  return db("users").where(id);
+  // passing in the first value (id) in our object
+  return db("users").where(id).first();
 };
 
 module.exports = {
