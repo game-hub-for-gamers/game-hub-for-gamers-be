@@ -1,4 +1,7 @@
 require("dotenv").config();
+// use the following code to install this is the json package
+// npm install nodemon --save-dev
+
 
 module.exports = {
   development: {
