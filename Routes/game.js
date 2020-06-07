@@ -2,7 +2,6 @@ const router = require("express").Router();
 const jwt = require("jsonwebtoken");
 
 const gameDB = require("../models/gamesModels");
-// const authentication = require("../middleware/authentication.js");
 
 router.get("/get", async (req, res) => {
   try {

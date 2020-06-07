@@ -4,14 +4,17 @@ const getToken = require("../middleware/token");
 
 const UserDB = require("../models/userModels");
 
+const authentication = require("../middleware/authentication.js");
+
 // get users endpoint
 router.get("/get", async (req, res) => {
   // http://localhost:3333/api/user/get
   try {
     const users = await UserDB.find(); // telling the async to countuine even if user assingment is not done then when UserDD.add is done it will execute
+    req.session.users = users;
     res.status(200).json(users);
   } catch (err) {
-    res.status(500).json({ err: err });
+    res.status(500).json({ err: "Internal server error" });
   }
 });
 
@@ -50,6 +53,7 @@ router.post("/login", (req, res) => {
       .then((user) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getToken(user);
+          req.session.user = user; // get's users from session middleware
           res.status(200).json({
             message: `Welcome ${user.username}!!`,
             token,
