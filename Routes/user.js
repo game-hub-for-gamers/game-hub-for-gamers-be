@@ -8,7 +8,7 @@ const UserDB = require("../models/userModels");
 router.get("/get", async (req, res) => {
   // http://localhost:3333/api/user/get
   try {
-    const users = await UserDB.find();
+    const users = await UserDB.find(); // telling the async to countuine even if user assingment is not done then when UserDD.add is done it will execute
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ err: err });
@@ -16,6 +16,7 @@ router.get("/get", async (req, res) => {
 });
 
 // register endpoint
+// This funtion allows the user to resgister information for their account and send the find and their hashed password to the database
 router.post("/register", async (req, res) => {
   // http://localhost:3333/api/user/register
   let newUser = req.body;
@@ -27,7 +28,7 @@ router.post("/register", async (req, res) => {
       const hash = bcrypt.hashSync(newUser.password, 10);
       newUser.password = hash; // setting the users password to a hash
 
-      const user = await UserDB.add(newUser); // await for the promise
+      const user = await UserDB.add(newUser); // telling the async to countuine even if user assingment is not done then when UserDD.add is done it will execute
       res.status(201).json(user);
     } catch (error) {
       res.status(500).json({ error: "Error in adding new user" + error });
@@ -36,6 +37,7 @@ router.post("/register", async (req, res) => {
 });
 
 // login endpoint
+// This funciotn will return the users token when logining into their account
 router.post("/login", (req, res) => {
   // http://localhost:3333/api/user/login
 

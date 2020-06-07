@@ -1,8 +1,10 @@
 const router = require("express").Router();
+const jwt = require("jsonwebtoken");
 
 const gameDB = require("../models/gamesModels");
+// const authentication = require("../middleware/authentication.js");
 
-router.get("/g", async (req, res) => {
+router.get("/get", async (req, res) => {
   try {
     const game = await gameDB.find();
     res.status(200).json(game);
@@ -11,7 +13,7 @@ router.get("/g", async (req, res) => {
   }
 });
 
-router.post("/g", async (req, res) => {
+router.post("/post", async (req, res) => {
   const newGame = req.body;
   console.log(newGame);
   if (!newGame) {
