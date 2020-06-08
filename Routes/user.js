@@ -9,6 +9,7 @@ router.get("/get", async (req, res) => {
   // http://localhost:3333/api/user/get
   try {
     const users = await UserDB.find();
+    req.session.users = users
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ err: err });
@@ -48,6 +49,7 @@ router.post("/login", (req, res) => {
       .then((user) => {
         if (user && bcrypt.compareSync(password, user.password)) {
           const token = getToken(user);
+          req.session.user = user // passing state to cookie
           res.status(200).json({
             message: `Welcome ${user.username}!!`,
             token,
