@@ -6,5 +6,5 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  knex.schema.dropTable("games");
+  return knex.schema.dropTable("games");
 };
