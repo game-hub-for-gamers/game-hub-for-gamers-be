@@ -3,6 +3,9 @@ const bcrypt = require("bcrypt");
 const getToken = require("../middleware/token");
 
 const UserDB = require("../models/userModels");
+const GameDB = require("../models/gamesModels");
+
+const db = require("../config/dbconfig");
 
 // get users endpoint
 router.get("/get", async (req, res) => {
@@ -62,6 +65,26 @@ router.post("/login", (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
       });
   }
+});
+
+// users to games card below
+
+router.get("/id/games", (req, res) => {
+  const { id } = req.params;
+
+  UserDB.findGames(id)
+    .then((user) => {
+      GameDB.findUsers()
+        .then((games) => {
+          res.status(200).json({ ...user[0], games }); // creating a new object from our user data at the first index and passing in our game data to the same new object
+        })
+        .catch((games_error) => {
+          res.status(501).json(games_error);
+        });
+    })
+    .catch((users_error) => {
+      res.status(500).json(users_error.message);
+    });
 });
 
 module.exports = router;
